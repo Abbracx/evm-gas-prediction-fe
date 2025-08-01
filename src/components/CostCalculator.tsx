@@ -6,16 +6,24 @@ import { Button } from './ui/Button';
 import { LoadingSpinner } from './ui/LoadingSpinner';
 import { useGas } from '../hooks/useGas';
 import { gasApi } from '../services/api';
+import { useApi } from '../hooks/useApi';
 import type { TransactionEstimate } from '../types';
 
 export const CostCalculator: React.FC = () => {
-  const { state } = useGas();
+  const { state, dispatch } = useGas();
   const [gasLimit, setGasLimit] = useState('21000');
   const [gasPrice, setGasPrice] = useState('');
   const [selectedChain, setSelectedChain] = useState('ethereum');
   const [estimate, setEstimate] = useState<TransactionEstimate | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { data: chains } = useApi(() => gasApi.getChains());
+
+  React.useEffect(() => {
+      if (chains) {
+        dispatch({ type: 'SET_CHAINS', payload: chains });
+      }
+    }, [chains, dispatch]);
 
   const calculateCost = async () => {
     if (!gasLimit || isNaN(Number(gasLimit))) {
@@ -76,6 +84,7 @@ export const CostCalculator: React.FC = () => {
         <Button onClick={calculateCost} disabled={loading} className="w-full">
           {loading ? <LoadingSpinner /> : 'Calculate Cost'}
         </Button>
+       
         
         {error && <p className="text-red-600 text-sm">{error}</p>}
         
