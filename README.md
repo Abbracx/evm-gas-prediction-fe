@@ -1,69 +1,90 @@
-# React + TypeScript + Vite
+# EVM Gas Prediction Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based dashboard for monitoring and predicting gas prices across different EVM-compatible blockchains.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time gas price monitoring
+- Multi-chain support (Ethereum, Polygon, BSC, etc.)
+- Interactive dashboard with chain selection
+- TypeScript support with strict type checking
+- Modern UI with Tailwind CSS
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 19** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS v4** for styling
+- **React Router** for navigation
+- **Axios** for API calls
+- **Context API** for state management
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Node.js 18+ 
+- Yarn package manager
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Abbracx/evm-gas-prediction-fe.git
+cd evm-gas-prediction-fe
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+yarn install
 ```
+
+3. Install Tailwind CSS PostCSS plugin:
+```bash
+yarn add -D @tailwindcss/postcss
+```
+
+## Development
+
+Start the development server:
+```bash
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## Build
+
+Create a production build:
+```bash
+yarn build
+```
+
+## Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── context/        # React Context providers
+├── hooks/          # Custom React hooks
+├── pages/          # Page components
+├── services/       # API services
+├── types/          # TypeScript type definitions
+├── App.tsx         # Main app component
+└── main.tsx        # Application entry point
+```
+
+## Configuration
+
+- **Tailwind CSS**: Configured with PostCSS plugin for v4 support
+- **ESLint**: Strict TypeScript rules with React hooks validation
+- **TypeScript**: Strict mode enabled with path mapping
+
+## API Integration
+
+The app integrates with gas price APIs through the `gasApi` service located in `src/services/api.ts`.
+
+## Contributing
+
+1. Follow the existing code style and TypeScript patterns
+2. Use the provided ESLint configuration
+3. Ensure all components are properly typed
+4. Test changes across different chains
