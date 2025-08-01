@@ -2,6 +2,11 @@
 
 A React-based dashboard for monitoring and predicting gas prices across different EVM-compatible blockchains.
 
+## Backend Repository
+
+This frontend connects to the EVM Gas Prediction Backend API:
+**[https://github.com/Abbracx/evm-gas-prediction-be](https://github.com/Abbracx/evm-gas-prediction-be)**
+
 ## Features
 
 - Real-time gas price monitoring
@@ -23,6 +28,7 @@ A React-based dashboard for monitoring and predicting gas prices across differen
 
 - Node.js 18+ 
 - Yarn package manager
+- Backend API running (see backend repository above)
 
 ## Installation
 
@@ -80,7 +86,9 @@ src/
 
 ## API Integration
 
-The app integrates with gas price APIs through the `gasApi` service located in `src/services/api.ts`.
+The app integrates with the backend API through the `gasApi` service located in `src/services/api.ts`.
+
+Make sure the backend is running before starting the frontend application.
 
 ## Contributing
 
